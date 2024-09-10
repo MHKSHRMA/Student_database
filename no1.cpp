@@ -1,3 +1,11 @@
+/*PLEASE READ:
+Firstly, make a students.json AND all_students.json files, 
+in the SAME directory as you have this code stored right now.
+Secondly, You have to exit the code when done with it, by pressing
+"3". This exits while loop at the end of the code.
+Thirdly, Enjoy and make improvements!!!*/
+
+
 #include<iostream>
 #include<map>
 #include <fstream>  // Include this for file operations
