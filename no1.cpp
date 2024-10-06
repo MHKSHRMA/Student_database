@@ -159,9 +159,28 @@ void add_student() {
 
 //Get student info
 void get_student_info() {
-    string name;
-    cout << "Enter the student's name: ";
-    getline(cin, name);
+
+    int choice;
+    cout << "Search student by:\n";
+    cout << "1. Name\n";
+    cout << "2. Roll Number\n";
+    cout << "Enter your choice (1/2): ";
+    cin >> choice;
+    cin.ignore();  // Ignore the newline character after the choice
+    
+    string query;
+    switch (choice) {
+        case 1:
+            cout << "Enter the student's name: ";
+            break;
+        case 2:
+            cout << "Enter the student's roll number: ";
+            break;
+        default:
+            cout << "Invalid choice.\n";
+            return;
+    }
+    getline(cin, query);
 
     // Open and read from the students.json file
     ifstream infile("students.json");
@@ -172,12 +191,15 @@ void get_student_info() {
 
         bool student_found = false;
 
-        // Iterate through the JSON array to find the student by name
+        // Iterate through the JSON array to find the student by entered query
         for (const auto &student_json : all_students) {
-            if (student_json["name"] == name) {
+            if ((choice == 1 && student_json["name"] == query) ||
+                (choice == 2 && student_json["roll_no"] == query)) {
+
+
                 cout << "Student Name: " << student_json["name"] << endl;
                 cout << "Batch Year: " << student_json["batch_year"] << endl;
-                cout << "Roll Number: " << student_json["roll_number"] << endl;
+                cout << "Roll Number: " << student_json["roll_no"] << endl;
                 cout << "Department: " << student_json["department"] << endl;
                 cout << "Class Room No: " << student_json["class_room_no"] << endl;
                 cout << "----------------------\n";
@@ -187,7 +209,7 @@ void get_student_info() {
         }
 
         if (!student_found) {
-            cout << "No record found for " << name << ".\n";
+            cout << "No record found for Given Query. \n";
         }
     } else {
         cout << "Error: Unable to open students.json for reading.\n";
