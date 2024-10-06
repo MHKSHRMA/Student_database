@@ -46,7 +46,7 @@ void save_student_to_json(const Student &student)
 	
 	//Read existing files,if they exist
 	json all_students;
-	ifstream infile ("D:/Projects/students.json");	
+	ifstream infile ("students.json");	
 		if (infile.is_open()){
 			cout << "Reading from students.json";
 			infile >> all_students;
@@ -61,7 +61,7 @@ void save_student_to_json(const Student &student)
 	all_students.push_back(students_json);
 
     // Save the updated student list back to the file
-    ofstream outfile("D:/Projects/students.json");
+    ofstream outfile("students.json");
     if (outfile.is_open()) {
 		cout << "Saving To students.json\n";
 		cout << all_students.dump(4) << endl; //Display the students saved
@@ -76,7 +76,7 @@ void save_student_to_json(const Student &student)
 //Fuction to load and display all students from json file
 void load_students_from_json()
 {
-	ifstream infile("D:/Projects/students.json");
+	ifstream infile("students.json");
 	if (infile.is_open())
 	{
 		json all_students;
@@ -136,7 +136,7 @@ void add_student() {
 
     // Load existing students from students.json
     json all_students;
-    ifstream infile("D:/Projects/students.json");
+    ifstream infile("students.json");
     if (infile.is_open()) {
         infile >> all_students;
         infile.close();
@@ -146,7 +146,7 @@ void add_student() {
     all_students.push_back(new_student_json);
 
     // Save all students (including the new one) back to students.json
-    ofstream outfile("D:/Projects/students.json");
+    ofstream outfile("students.json");
     if (outfile.is_open()) {
         outfile << all_students.dump(4);  // Save in pretty format
         outfile.close();
@@ -164,7 +164,7 @@ void get_student_info() {
     getline(cin, name);
 
     // Open and read from the students.json file
-    ifstream infile("D:/Projects/students.json");
+    ifstream infile("students.json");
     if (infile.is_open()) {
         json all_students;
         infile >> all_students;  // Load the JSON data from the file
